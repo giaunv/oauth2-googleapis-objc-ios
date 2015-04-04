@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94D34BDB1ACFA44D00BADD2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BDA1ACFA44D00BADD2D /* main.m */; };
+		94D34BDE1ACFA44D00BADD2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BDD1ACFA44D00BADD2D /* AppDelegate.m */; };
+		94D34BE11ACFA44D00BADD2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BE01ACFA44D00BADD2D /* ViewController.m */; };
+		94D34BE41ACFA44D00BADD2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94D34BE21ACFA44D00BADD2D /* Main.storyboard */; };
+		94D34BE61ACFA44D00BADD2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94D34BE51ACFA44D00BADD2D /* Images.xcassets */; };
+		94D34BE91ACFA44D00BADD2D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D34BE71ACFA44D00BADD2D /* LaunchScreen.xib */; };
+		94D34BF51ACFA44D00BADD2D /* googleoauth2demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BF41ACFA44D00BADD2D /* googleoauth2demoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94D34BEF1ACFA44D00BADD2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94D34BCD1ACFA44D00BADD2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94D34BD41ACFA44D00BADD2D;
+			remoteInfo = googleoauth2demo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		94D34BD51ACFA44D00BADD2D /* googleoauth2demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = googleoauth2demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94D34BD91ACFA44D00BADD2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94D34BDA1ACFA44D00BADD2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		94D34BDC1ACFA44D00BADD2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		94D34BDD1ACFA44D00BADD2D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		94D34BDF1ACFA44D00BADD2D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		94D34BE01ACFA44D00BADD2D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		94D34BE31ACFA44D00BADD2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		94D34BE51ACFA44D00BADD2D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		94D34BE81ACFA44D00BADD2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		94D34BEE1ACFA44D00BADD2D /* googleoauth2demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = googleoauth2demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94D34BF31ACFA44D00BADD2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94D34BF41ACFA44D00BADD2D /* googleoauth2demoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = googleoauth2demoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94D34BD21ACFA44D00BADD2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D34BEB1ACFA44D00BADD2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94D34BCC1ACFA44D00BADD2D = {
+			isa = PBXGroup;
+			children = (
+				94D34BD71ACFA44D00BADD2D /* googleoauth2demo */,
+				94D34BF11ACFA44D00BADD2D /* googleoauth2demoTests */,
+				94D34BD61ACFA44D00BADD2D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94D34BD61ACFA44D00BADD2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94D34BD51ACFA44D00BADD2D /* googleoauth2demo.app */,
+				94D34BEE1ACFA44D00BADD2D /* googleoauth2demoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94D34BD71ACFA44D00BADD2D /* googleoauth2demo */ = {
+			isa = PBXGroup;
+			children = (
+				94D34BDC1ACFA44D00BADD2D /* AppDelegate.h */,
+				94D34BDD1ACFA44D00BADD2D /* AppDelegate.m */,
+				94D34BDF1ACFA44D00BADD2D /* ViewController.h */,
+				94D34BE01ACFA44D00BADD2D /* ViewController.m */,
+				94D34BE21ACFA44D00BADD2D /* Main.storyboard */,
+				94D34BE51ACFA44D00BADD2D /* Images.xcassets */,
+				94D34BE71ACFA44D00BADD2D /* LaunchScreen.xib */,
+				94D34BD81ACFA44D00BADD2D /* Supporting Files */,
+			);
+			path = googleoauth2demo;
+			sourceTree = "<group>";
+		};
+		94D34BD81ACFA44D00BADD2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94D34BD91ACFA44D00BADD2D /* Info.plist */,
+				94D34BDA1ACFA44D00BADD2D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94D34BF11ACFA44D00BADD2D /* googleoauth2demoTests */ = {
+			isa = PBXGroup;
+			children = (
+				94D34BF41ACFA44D00BADD2D /* googleoauth2demoTests.m */,
+				94D34BF21ACFA44D00BADD2D /* Supporting Files */,
+			);
+			path = googleoauth2demoTests;
+			sourceTree = "<group>";
+		};
+		94D34BF21ACFA44D00BADD2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94D34BF31ACFA44D00BADD2D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94D34BD41ACFA44D00BADD2D /* googleoauth2demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94D34BF81ACFA44D00BADD2D /* Build configuration list for PBXNativeTarget "googleoauth2demo" */;
+			buildPhases = (
+				94D34BD11ACFA44D00BADD2D /* Sources */,
+				94D34BD21ACFA44D00BADD2D /* Frameworks */,
+				94D34BD31ACFA44D00BADD2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = googleoauth2demo;
+			productName = googleoauth2demo;
+			productReference = 94D34BD51ACFA44D00BADD2D /* googleoauth2demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		94D34BED1ACFA44D00BADD2D /* googleoauth2demoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94D34BFB1ACFA44D00BADD2D /* Build configuration list for PBXNativeTarget "googleoauth2demoTests" */;
+			buildPhases = (
+				94D34BEA1ACFA44D00BADD2D /* Sources */,
+				94D34BEB1ACFA44D00BADD2D /* Frameworks */,
+				94D34BEC1ACFA44D00BADD2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94D34BF01ACFA44D00BADD2D /* PBXTargetDependency */,
+			);
+			name = googleoauth2demoTests;
+			productName = googleoauth2demoTests;
+			productReference = 94D34BEE1ACFA44D00BADD2D /* googleoauth2demoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94D34BCD1ACFA44D00BADD2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = 366;
+				TargetAttributes = {
+					94D34BD41ACFA44D00BADD2D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					94D34BED1ACFA44D00BADD2D = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 94D34BD41ACFA44D00BADD2D;
+					};
+				};
+			};
+			buildConfigurationList = 94D34BD01ACFA44D00BADD2D /* Build configuration list for PBXProject "googleoauth2demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 94D34BCC1ACFA44D00BADD2D;
+			productRefGroup = 94D34BD61ACFA44D00BADD2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94D34BD41ACFA44D00BADD2D /* googleoauth2demo */,
+				94D34BED1ACFA44D00BADD2D /* googleoauth2demoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94D34BD31ACFA44D00BADD2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D34BE41ACFA44D00BADD2D /* Main.storyboard in Resources */,
+				94D34BE91ACFA44D00BADD2D /* LaunchScreen.xib in Resources */,
+				94D34BE61ACFA44D00BADD2D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D34BEC1ACFA44D00BADD2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94D34BD11ACFA44D00BADD2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D34BE11ACFA44D00BADD2D /* ViewController.m in Sources */,
+				94D34BDE1ACFA44D00BADD2D /* AppDelegate.m in Sources */,
+				94D34BDB1ACFA44D00BADD2D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94D34BEA1ACFA44D00BADD2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94D34BF51ACFA44D00BADD2D /* googleoauth2demoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94D34BF01ACFA44D00BADD2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94D34BD41ACFA44D00BADD2D /* googleoauth2demo */;
+			targetProxy = 94D34BEF1ACFA44D00BADD2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		94D34BE21ACFA44D00BADD2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94D34BE31ACFA44D00BADD2D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		94D34BE71ACFA44D00BADD2D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94D34BE81ACFA44D00BADD2D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94D34BF61ACFA44D00BADD2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		94D34BF71ACFA44D00BADD2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		94D34BF91ACFA44D00BADD2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = googleoauth2demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94D34BFA1ACFA44D00BADD2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = googleoauth2demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		94D34BFC1ACFA44D00BADD2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = googleoauth2demoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/googleoauth2demo.app/googleoauth2demo";
+			};
+			name = Debug;
+		};
+		94D34BFD1ACFA44D00BADD2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = googleoauth2demoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/googleoauth2demo.app/googleoauth2demo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94D34BD01ACFA44D00BADD2D /* Build configuration list for PBXProject "googleoauth2demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D34BF61ACFA44D00BADD2D /* Debug */,
+				94D34BF71ACFA44D00BADD2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94D34BF81ACFA44D00BADD2D /* Build configuration list for PBXNativeTarget "googleoauth2demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D34BF91ACFA44D00BADD2D /* Debug */,
+				94D34BFA1ACFA44D00BADD2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		94D34BFB1ACFA44D00BADD2D /* Build configuration list for PBXNativeTarget "googleoauth2demoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94D34BFC1ACFA44D00BADD2D /* Debug */,
+				94D34BFD1ACFA44D00BADD2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94D34BCD1ACFA44D00BADD2D /* Project object */;
+}
