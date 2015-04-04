@@ -24,4 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)showProfile:(id)sender {
+}
+
+- (IBAction)revokeAccess:(id)sender {
+}
 @end

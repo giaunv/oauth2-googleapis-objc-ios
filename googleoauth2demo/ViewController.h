@@ -10,6 +10,12 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *table;
+
+- (IBAction)showProfile:(id)sender;
+
+
+- (IBAction)revokeAccess:(id)sender;
 
 @end
 
