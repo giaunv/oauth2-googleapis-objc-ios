@@ -14,6 +14,7 @@
 		94D34BE61ACFA44D00BADD2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94D34BE51ACFA44D00BADD2D /* Images.xcassets */; };
 		94D34BE91ACFA44D00BADD2D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D34BE71ACFA44D00BADD2D /* LaunchScreen.xib */; };
 		94D34BF51ACFA44D00BADD2D /* googleoauth2demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BF41ACFA44D00BADD2D /* googleoauth2demoTests.m */; };
+		94D34C001ACFEFE700BADD2D /* GoogleOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D34BFF1ACFEFE700BADD2D /* GoogleOAuth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		94D34BEE1ACFA44D00BADD2D /* googleoauth2demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = googleoauth2demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D34BF31ACFA44D00BADD2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94D34BF41ACFA44D00BADD2D /* googleoauth2demoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = googleoauth2demoTests.m; sourceTree = "<group>"; };
+		94D34BFE1ACFEFE700BADD2D /* GoogleOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleOAuth.h; sourceTree = "<group>"; };
+		94D34BFF1ACFEFE700BADD2D /* GoogleOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleOAuth.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				94D34BE51ACFA44D00BADD2D /* Images.xcassets */,
 				94D34BE71ACFA44D00BADD2D /* LaunchScreen.xib */,
 				94D34BD81ACFA44D00BADD2D /* Supporting Files */,
+				94D34BFE1ACFEFE700BADD2D /* GoogleOAuth.h */,
+				94D34BFF1ACFEFE700BADD2D /* GoogleOAuth.m */,
 			);
 			path = googleoauth2demo;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			files = (
 				94D34BE11ACFA44D00BADD2D /* ViewController.m in Sources */,
 				94D34BDE1ACFA44D00BADD2D /* AppDelegate.m in Sources */,
+				94D34C001ACFEFE700BADD2D /* GoogleOAuth.m in Sources */,
 				94D34BDB1ACFA44D00BADD2D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
