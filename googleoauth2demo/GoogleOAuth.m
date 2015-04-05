@@ -44,6 +44,18 @@
 // The parent view where the webview will be shown on.
 @property (nonatomic, strong) UIView *parentView;
 
+-(void)showWebviewForUserLogin;
+-(void)exchangeAuthorizationCodeForAccessToken;
+-(void)refreshAccessToken;
+
+-(NSString *)urlEncodeString:(NSString *)stringToURLEncode;
+-(void)storeAccessTokenInfo;
+-(void)loadAccessTokenInfo;
+-(void)loadRefreshToken;
+-(BOOL)checkIfAccessTokenInfoFileExists;
+-(BOOL)checkIfRefreshTokenFileExists;
+-(BOOL)checkIfShouldRefreshAccessToken;
+-(void)makeRequest:(NSMutableURLRequest *)request;
 @end
 
 @implementation GoogleOAuth
@@ -68,6 +80,30 @@
         _isRefreshing = NO;
     }
     return self;
+}
+
+-(void)authorizeUserWithClientID:(NSString *)client_ID andClientSecret:(NSString *)client_Secret andParentView:(UIView *)parent_View andScopes:(NSArray *)scopes{
+    // Store into the local private properties all the parameter values.
+    _clientID = [[NSString alloc] initWithString:client_ID];
+    _clientSecret = [[NSString alloc] initWithString:client_Secret];
+    _scopes = [[NSMutableArray alloc] initWithArray:scopes copyItems:YES];
+    _parentView = parent_View;
+    
+    // Check if the access token info file exists or not
+    if ([self checkIfAccessTokenInfoFileExists]) {
+        // In case it exists, load the access token info and check if the access token is valid
+        [self loadAccessTokenInfo];
+        if ([self checkIfShouldRefreshAccessToken]) {
+            // If the access token is not valid then refresh it
+            [self refreshAccessToken];
+        } else{
+            // Otherwise tell the caller through the delegate class that the authorization is successful
+            [self.gOAuthDelegate authorizationWasSuccessful];
+        }
+    } else{
+        // In case of the access token info file is not found then show the webview to let user sign in and allow access to the app.
+        [self showWebviewForUserLogin];
+    }
 }
 
 @end
