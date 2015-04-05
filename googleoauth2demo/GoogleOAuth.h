@@ -15,6 +15,16 @@ typedef enum{
     httpMethod_PUT
 } HTTP_Method;
 
+@protocol GoogleOAuthDelegate
+-(void)authorizationWasSuccessful;
+-(void)accessTokenWasRevoked;
+-(void)responseFromServiceWasReceived:(NSString *)responseJSONAsString andResponseJSONAsData:(NSData *)responseJSONAsData;
+-(void)errorOccuredWithShortDescription:(NSString *)errorShortDescription andErrorDetails:(NSString *)errorDetails;
+-(void)errorInResponseWithBody:(NSString *)errorMessage;
+@end
+
 @interface GoogleOAuth : UIWebView <UIWebViewDelegate,NSURLConnectionDataDelegate>
+
+@property (nonatomic, strong) id<GoogleOAuthDelegate> gOAuthDelegate;
 
 @end
