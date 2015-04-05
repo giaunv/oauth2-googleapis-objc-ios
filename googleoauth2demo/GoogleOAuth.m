@@ -106,4 +106,108 @@
     }
 }
 
+-(void) showWebviewForUserLogin{
+    // Create a string to concatenate all scopes existing in the _scopes array.
+    NSString *scope = @"";
+    for (int i = 0; i < [_scopes count]; i++) {
+        scope = [scope stringByAppendingString:[self urlEncodeString:[_scopes objectAtIndex:i]]];
+        
+        // If the current scope is other than the last one, then add the "+" sign to the string to separate the scopes.
+        if (i < [_scopes count] - 1) {
+            scope = [scope stringByAppendingString:@"+"];
+        }
+    }
+    
+    // From the URL string.
+    NSString *targetURLString = [NSString stringWithFormat:@"%@?scope=%@&amp;redirect_uri=%@&amp;client_id=%@&amp;response_type=code", authorizationTokenEndpoint, scope, _redirectUri, _clientID];
+    
+    // Do some basic webview setup.
+    [self setDelegate:self];
+    [self setScalesPageToFit:YES];
+    [self setAutoresizingMask:_parentView.autoresizingMask];
+    
+    // Make the request and add itself (webview) to the parent view.
+    [self loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:targetURLString]]];
+    [_parentView addSubview:self];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    // Get the webpage title.
+    NSString *webviewTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    // NSLog(@"Webview Title = %@", webviewTitle)
+    
+    // Check for the "Success token" literal in the title.
+    if ([webviewTitle rangeOfString:@"Success code"].location != NSNotFound) {
+        // The oauth code has been retrieved.
+        // Break the title based on the equal sign (=).
+        NSArray *titleParts = [webviewTitle componentsSeparatedByString:@"="];
+        // The second part is the oauth token
+        _authorizationCode = [[NSString alloc] initWithString:[titleParts objectAtIndex:1]];
+        
+        // Show a "Please wait..." message to the webview.
+        NSString *html = @"<html><head><title>Please wait</title></head><body><h1>Please wait...</h1></body></html>";
+        [self loadHTMLString:html baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+        
+        // Exchange the authorization code for an access code
+        [self exchangeAuthorizationCodeForAccessToken];
+    } else {
+        if ([webviewTitle rangeOfString:@"access_denied"].location != NSNotFound) {
+            // In case that the user tapped on the Cancel button instead of the Accept, then just remove the webview from the superview.
+            [webView removeFromSuperview];
+        }
+    }
+}
+
+-(void)exchangeAuthorizationCodeForAccessToken{
+    // Create a string containing all the post parameters required to exchange the authorization code with the access token.
+    NSString *postParams = [NSString stringWithFormat:@"code=%@&amp;client_id=%@&amp;client_secret=%@&amp;redirect_uri=%@&amp;grant_type=authorization_code", _authorizationCode, _clientID, _clientSecret, _redirectUri];
+    
+    // Create a mutable request object and set its properties.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:accessTokenEndpoint]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postParams dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Make the request.
+    [self makeRequest:request];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    [self.gOAuthDelegate errorOccuredWithShortDescription:@"Connection failed" andErrorDetails:[error localizedDescription]];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    // This object will be used to store the converted received JSON data to string.
+    NSString *responseJSON;
+    
+    // This flag indicates whether the response was received after an API call and out of the following cases.
+    BOOL isAPIResponse = YES;
+    
+    // Convert the received data in NSString format.
+    responseJSON = [[NSString alloc] initWithData:(NSData *)_receivedData encoding:NSUTF8StringEncoding];
+    
+    // Check for access token.
+    if ([responseJSON rangeOfString:@"access_token"].location != NSNotFound) {
+        // This is the case where the access token has been fetched.
+        [self storeAccessTokenInfo];
+        
+        // Remove the webview from the superview.
+        [self removeFromSuperview];
+        
+        if (_isRefreshing) {
+            _isRefreshing = NO;
+        }
+        
+        // Notify the caller class that the authorization was successful.
+        [self.gOAuthDelegate authorizationWasSuccessful];
+        
+        isAPIResponse = NO;
+    }
+}
+
+-(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    // Append any new data to the _receivedData object.
+    [_receivedData appendData:data];
+}
+
 @end
