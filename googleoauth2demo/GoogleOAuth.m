@@ -186,6 +186,18 @@
     // Convert the received data in NSString format.
     responseJSON = [[NSString alloc] initWithData:(NSData *)_receivedData encoding:NSUTF8StringEncoding];
     
+    // Check for invalid refresh token.
+    // In that case guide the user to enter the credentials again.
+    if ([responseJSON rangeOfString:@"invalid_grant"].location != NSNotFound) {
+        if (_isRefreshing) {
+            _isRefreshing = NO;
+        }
+        
+        [self showWebviewForUserLogin];
+        
+        isAPIResponse = NO;
+    }
+    
     // Check for access token.
     if ([responseJSON rangeOfString:@"access_token"].location != NSNotFound) {
         // This is the case where the access token has been fetched.
@@ -208,6 +220,28 @@
 -(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     // Append any new data to the _receivedData object.
     [_receivedData appendData:data];
+}
+
+-(void) refreshAccessToken{
+    // Load the refresh token if it's not loaded already.
+    if (_refreshToken == nil) {
+        [self loadRefreshToken];
+    }
+    
+    // Set the HTTP POST parameters required for refreshing the access token.
+    NSString *refreshPostParams = [NSString stringWithFormat:@"refresh_token=%@&client_id=%@&client_secret=%@&grant_type=refresh_token", _refreshToken, _clientID, _clientSecret];
+    
+    // Indicate that an access token refresh process is on the way.
+    _isRefreshing = YES;
+    
+    // Create the request object and set its properties.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:accessTokenEndpoint]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[refreshPostParams dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Make the request.
+    [self makeRequest:request];
 }
 
 @end
