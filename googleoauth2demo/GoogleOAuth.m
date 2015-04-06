@@ -370,4 +370,43 @@
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     NSLog(@"%d", [httpResponse statusCode]);
 }
+
+-(void)revokeAccessToken{
+    // Set the revoke URL string.
+    NSString *revokeURLString = [NSString stringWithFormat:@"https://accounts.google.com/o/oauth2/revoke?token=%@", [_accessTokenInfoDictionary objectForKey:@"access_token"]];
+    
+    // Create and make a request based on the URL string.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:revokeURLString]];
+    [self makeRequest:request];
+    
+    // Now that the request for revoking the access in Google has been made, all the local files regrading the access token should be removed as well.
+    NSError *error = nil;
+    // If the access token file exists then delete it.
+    if ([self checkIfAccessTokenInfoFileExists]) {
+        [[NSFileManager defaultManager] removeItemAtPath:_accessTokenInfoFile error:&error];
+        
+        if (error != nil) {
+            // If an error occurs while removing the access token info file then notify the caller class through the next delegate method.
+            [self.gOAuthDelegate errorOccuredWithShortDescription:@"Unable to delete access token info file" andErrorDetails:[error localizedDescription]];
+        }
+    }
+    
+    // Check now if the refresh token file exists and then remove it.
+    if ([self checkIfRefreshTokenFileExists]) {
+        [[NSFileManager defaultManager] removeItemAtPath:_refreshTokenFile error:&error];
+        
+        if (error != nil) {
+            // In case of an error while removing the file then notify the caller class through the delegate method.
+            [self.gOAuthDelegate errorOccuredWithShortDescription:@"Unable to delete refresh token info file."
+                                                  andErrorDetails:[error localizedDescription]];
+        }
+    }
+    
+    
+    if (error == nil) {
+        // If no error occured during file removals then use the next delegate method
+        // to notify the caller class that the access has been revoked.
+        [self.gOAuthDelegate accessTokenWasRevoked];
+    }
+}
 @end
