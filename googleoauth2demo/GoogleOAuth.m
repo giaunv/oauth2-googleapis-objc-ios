@@ -244,4 +244,108 @@
     [self makeRequest:request];
 }
 
+-(NSString *)urlEncodeString:(NSString *)stringToURLEncode{
+    // URL-encode the parameter string and return it.
+    CFStringRef encodedURL = CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) stringToURLEncode , NULL, (CFStringRef)@"!@#$%&*'();:=+,/?[]", kCFStringEncodingUTF8);
+    return (NSString *)CFBridgingRelease(encodedURL);
+}
+
+-(void) storeAccessTokenInfo {
+    NSError *error;
+    
+    // Keep the access token info into a dictionary
+    _accessTokenInfoDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:NSJSONReadingMutableContainers error:&error];
+    
+    // Check if any error occured while converting NSData data to NSDictionary.
+    if (error) {
+        [self.gOAuthDelegate errorOccuredWithShortDescription:@"An error occur while saving access token info into a NSDictionary." andErrorDetails:[error localizedDescription]];
+    }
+    
+    // Save a dictionary to a file.
+    [_accessTokenInfoDictionary writeToFile:_accessTokenInfoFile atomically:YES];
+    
+    // If a refresh token is found inside the access token info dictionary then save it separately.
+    if ([_accessTokenInfoDictionary objectForKey:@"refresh_token"] != nil) {
+        // Extract the refresh token.
+        _refreshToken = [[NSString alloc] initWithString:[_accessTokenInfoDictionary objectForKey:@"refresh_token"]];
+        
+        // Save the refresh token as data.
+        [_refreshToken writeToFile:_refreshTokenFile atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        
+        // If an error occurs while saving the refresh token then notify the caller class.
+        if (error) {
+            [self.gOAuthDelegate errorOccuredWithShortDescription:@"An error occured while saving the refresh token." andErrorDetails:[error localizedDescription]];
+        }
+    }
+}
+
+-(void)loadAccessTokenInfo{
+    // Check if access token info file exists.
+    if ([self checkIfAccessTokenInfoFileExists]) {
+        // Load access token info form the file into the dictionary.
+        _accessTokenInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:_accessTokenInfoFile];
+    } else {
+        // If the access  token info file doesn't exists then inform the claller class through the delegate.
+        [self.gOAuthDelegate errorOccuredWithShortDescription:@"Access token info file is not found." andErrorDetails:@""];
+    }
+}
+
+-(void)loadRefreshToken{
+    // Check if the refresh token file exists.
+    if ([self checkIfRefreshTokenFileExists]) {
+        NSError *error;
+        _refreshToken = [[NSString alloc] initWithContentsOfFile:_refreshTokenFile usedEncoding:NSUTF8StringEncoding error:&error];
+        
+        // If an error occurs while saving the refresh token then notify the caller class.
+        if (error) {
+            [self.gOAuthDelegate errorOccuredWithShortDescription:@"An error occured while loading the refresh token." andErrorDetails:[error localizedDescription]];
+        }
+    }
+}
+
+-(BOOL)checkIfAccessTokenInfoFileExists{
+    // If the access token  info file exists, return YES, otherwise return NO.
+    return (![[NSFileManager defaultManager] fileExistsAtPath:_accessTokenInfoFile] ? NO : YES);
+}
+
+-(BOOL)checkIfRefreshTokenFileExists{
+    return (![[NSFileManager defaultManager] fileExistsAtPath:_refreshTokenFile] ? NO : YES);
+}
+
+-(BOOL)checkIfShouldRefreshAccessToken{
+    NSError *error;
+    
+    // Get the time to live (in seconds) value regarding the access token.
+    int accessTokenTTL = [[_accessTokenInfoDictionary objectForKey:@"expires_in"] intValue];
+    
+    // Get the date that access token file was created.
+    NSDate *accessTokenInfoFileCreated = [[[NSFileManager defaultManager] attributesOfItemAtPath:_accessTokenInfoFile error:&error] fileCreationDate];
+    
+    // Check if any error occured.
+    if (error != nil) {
+        [self.gOAuthDelegate errorOccuredWithShortDescription:@"Can not read access token file's creation date." andErrorDetails:[error localizedDescription]];
+        
+        return YES;
+    } else{
+        // Get the time different between the file creation date and now.
+        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:accessTokenInfoFileCreated];
+        
+        // Check if the interval value is equal or greater than the accessTokenTTL value.
+        // If that's the case then the access token should be refreshed.
+        if (interval >= accessTokenTTL) {
+            return YES;
+        } else{
+            return NO;
+        }
+    }
+}
+
+-(void)makeRequest:(NSMutableURLRequest *)request{
+    // Set the length of the _receivedData mutableData object to zero.
+    [_receivedData setLength:0];
+    
+    // Make the request
+    _urlConnection = [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
 @end
