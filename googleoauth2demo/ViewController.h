@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoogleOAuth.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, GoogleOAuthDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 
