@@ -409,4 +409,62 @@
         [self.gOAuthDelegate accessTokenWasRevoked];
     }
 }
+
+-(void)callAPI:(NSString *)apiURL withHttpMethod:(HTTP_Method)httpMethod postParameterNames:(NSArray *)params postParameterValues:(NSArray *)values{
+    // Check if the httpMethod value is valid.
+    // If not then notify for error.
+    if (httpMethod != httpMethod_GET && httpMethod != httpMethod_POST && httpMethod != httpMethod_PUT && httpMethod != httpMethod_DELETE) {
+        [self.gOAuthDelegate errorOccuredWithShortDescription:@"Invalid HTTP Method in API call" andErrorDetails:@""];
+    } else {
+        // Create a string containing the API URL along with the access token.
+        NSString *urlString = [NSString stringWithFormat:@"%@?access_token=%@", apiURL, [_accessTokenInfoDictionary objectForKey:@"access_token"]];
+        
+        // Create a mutable request.
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        // Depend on the httpMethod vaue set the respective property of the request object.
+        switch (httpMethod) {
+            case httpMethod_GET:
+                [request setHTTPMethod:@"GET"];
+                break;
+            case httpMethod_POST:
+                [request setHTTPMethod:@"POST"];
+                break;
+            case httpMethod_DELETE:
+                [request setHTTPMethod:@"DELETE"];
+                break;
+            case httpMethod_PUT:
+                [request setHTTPMethod:@"PUT"];
+                break;
+                
+            default:
+                break;
+        }
+        
+        // In case of POST httpMethod value, set the parameters and any other necessary properties.
+        if (httpMethod == httpMethod_POST) {
+            // A string with the POST parameters should be built.
+            // Create an empty string.
+            NSString *postParams = @"";
+            // Iterrate through all parameters and append every POST parameter to the postParams string.
+            for (int i=0; i<[params count]; i++) {
+                postParams = [postParams stringByAppendingString:[NSString stringWithFormat:@"%@=%@",
+                                                                  [params objectAtIndex:i], [values objectAtIndex:i]]];
+                
+                // If the current parameter is not the last one then add the "&" symbol to separate post parameters.
+                if (i < [params count] - 1) {
+                    postParams = [postParams stringByAppendingString:@"&"];
+                }
+            }
+            
+            // Set any other necessary options.
+            [request setHTTPBody:[postParams dataUsingEncoding:NSUTF8StringEncoding]];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        }
+        
+        
+        // Make the request.
+        [self makeRequest:request];
+
+    }
+}
 @end

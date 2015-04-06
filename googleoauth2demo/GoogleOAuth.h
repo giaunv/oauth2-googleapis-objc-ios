@@ -28,4 +28,5 @@ typedef enum{
 @property (nonatomic, strong) id<GoogleOAuthDelegate> gOAuthDelegate;
 -(void) authorizeUserWithClientID:(NSString *)client_ID andClientSecret:(NSString *)client_Secret andParentView:(UIView *)parent_View andScopes:(NSArray *)scopes;
 -(void)revokeAccessToken;
+-(void)callAPI:(NSString *)apiURL withHttpMethod:(HTTP_Method)httpMethod postParameterNames:(NSArray *)params postParameterValues:(NSArray *)values;
 @end
