@@ -215,6 +215,24 @@
         
         isAPIResponse = NO;
     }
+    
+    // Check for invalid credentials.
+    // This checking is useful when an API is called without prior checking whether the access token is valid or not.
+    if ([responseJSON rangeOfString:@"Invalid Credentials"].location != NSNotFound || [responseJSON rangeOfString:@"401"].location != NSNotFound) {
+        [self refreshAccessToken];
+        isAPIResponse = NO;
+    }
+    
+    // This is the case where any other error message exists in the response.
+    if ([responseJSON rangeOfString:@"error"].location != NSNotFound) {
+        [self.gOAuthDelegate errorInResponseWithBody:responseJSON];
+        isAPIResponse = NO;
+    }
+    
+    // If execution successfully arrives here then notify the caller class that a response was received.
+    if (isAPIResponse) {
+        [self.gOAuthDelegate responseFromServiceWasReceived:responseJSON andResponseJSONAsData:_receivedData];
+    }
 }
 
 -(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
@@ -348,4 +366,8 @@
     _urlConnection = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+    NSLog(@"%d", [httpResponse statusCode]);
+}
 @end
